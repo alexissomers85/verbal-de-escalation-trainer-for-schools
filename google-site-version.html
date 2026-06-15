@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbal De-escalation Trainer for Schools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --success-color: #10b981;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .welcome-box h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .welcome-box > p {
+            font-size: 1em;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0 30px 0;
+        }
+
+        .info-card {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            font-size: 0.9em;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            background: none;
+            color: var(--primary-color);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-back:hover {
+            text-decoration: underline;
+        }
+
+        .content-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .content-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+
+        .content-box h3 {
+            margin: 20px 0 12px 0;
+            color: var(--text-dark);
+            font-size: 1.2em;
+        }
+
+        .content-box p {
+            margin-bottom: 12px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .content-box ul {
+            margin: 12px 0 12px 20px;
+        }
+
+        .content-box li {
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .principle-card {
+            background: linear-gradient(135deg, var(--bg-light) 0%, white 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+        }
+
+        .principle-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .principle-card p {
+            font-size: 0.85em;
+            color: var(--text-light);
+        }
+
+        .technique-card {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .technique-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .technique-card p {
+            margin-bottom: 6px;
+            font-size: 0.9em;
+        }
+
+        .scenario-container {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .scenario-header h2 {
+            color: var(--primary-color);
+            font-size: 1.4em;
+        }
+
+        .scenario-progress {
+            background: var(--bg-light);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9em;
+        }
+
+        .escalation-meter {
+            margin: 20px 0;
+        }
+
+        .escalation-meter label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+
+        .meter-bar {
+            background-color: var(--border-color);
+            height: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .meter-fill {
+            background: linear-gradient(90deg, var(--success-color) 0%, var(--warning-color) 50%, var(--danger-color) 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .meter-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            color: var(--text-light);
+        }
+
+        .dialogue-box {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .dialogue-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            max-width: 85%;
+            word-wrap: break-word;
+            font-size: 0.9em;
+        }
+
+        .message.student {
+            background-color: var(--danger-color);
+            color: white;
+            align-self: flex-start;
+        }
+
+        .message.staff {
+            background-color: var(--primary-color);
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .message.system {
+            background-color: var(--warning-color);
+            color: white;
+            align-self: center;
+            text-align: center;
+            font-style: italic;
+            max-width: 100%;
+        }
+
+        .message.outcome {
+            background-color: var(--success-color);
+            color: white;
+            align-self: center;
+            font-weight: bold;
+            padding: 15px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .message.outcome.negative {
+            background-color: var(--danger-color);
+        }
+
+        .tips-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .tips-box h4 {
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .tips-box ul {
+            margin: 0 0 0 20px;
+        }
+
+        .tips-box li {
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 0.9em;
+        }
+
+        .response-input {
+            margin: 20px 0;
+        }
+
+        .response-input label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+
+        .response-input textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9em;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .response-input textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .feedback-box {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .feedback-box.hidden {
+            display: none;
+        }
+
+        .feedback-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .feedback-box.positive {
+            border-left: 6px solid var(--success-color);
+        }
+
+        .feedback-box.negative {
+            border-left: 6px solid var(--danger-color);
+        }
+
+        #feedbackContent {
+            margin-bottom: 15px;
+        }
+
+        .feedback-section {
+            margin: 15px 0;
+        }
+
+        .feedback-section h4 {
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .feedback-item {
+            background: var(--bg-light);
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-color);
+            font-size: 0.9em;
+        }
+
+        .feedback-item.positive {
+            border-left-color: var(--success-color);
+        }
+
+        .feedback-item.negative {
+            border-left-color: var(--danger-color);
+        }
+
+        .feedback-item.tip {
+            border-left-color: var(--warning-color);
+        }
+
+        .results-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .results-container h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .results-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stat-card .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-card .stat-label {
+            color: var(--text-light);
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .welcome-box {
+                padding: 20px;
+            }
+
+            .scenario-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .scenario-progress {
+                margin-top: 10px;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎯 De-escalation Trainer</h1>
+            <p class="subtitle">Learn Verbal De-escalation Techniques</p>
+        </header>
+
+        <main>
+            <!-- Home Screen -->
+            <section id="homeScreen" class="screen active">
+                <div class="welcome-box">
+                    <h2>Welcome to the De-escalation Trainer</h2>
+                    <p>Learn and practice verbal de-escalation techniques using realistic school scenarios.</p>
+                    
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>📋 Scenarios</h3>
+                            <p>Interactive classroom situations</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>📊 Feedback</h3>
+                            <p>Real-time evaluation</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>📚 Learning</h3>
+                            <p>CPI-based techniques</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="startTraining()">Start Training</button>
+                    <button class="btn btn-secondary" onclick="showScreen('aboutScreen')">About De-escalation</button>
+                    <button class="btn btn-secondary" onclick="showScreen('learnScreen')">Learning Resources</button>
+                </div>
+            </section>
+
+            <!-- Scenario Screen -->
+            <section id="scenarioScreen" class="screen">
+                <div class="scenario-container">
+                    <div class="scenario-header">
+                        <h2 id="scenarioTitle">Scenario</h2>
+                        <div class="scenario-progress">
+                            <span id="scenarioNumber">1</span> / <span id="scenarioTotal">6</span>
+                        </div>
+                    </div>
+
+                    <div class="escalation-meter">
+                        <label>Student Escalation Level</label>
+                        <div class="meter-bar">
+                            <div id="escalationBar" class="meter-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="meter-labels">
+                            <span>Calm</span>
+                            <span>Escalating</span>
+                            <span>Aggressive</span>
+                        </div>
+                    </div>
+
+                    <div class="dialogue-box">
+                        <div class="dialogue-messages" id="dialogueMessages"></div>
+                    </div>
+
+                    <div class="tips-box">
+                        <h4>💡 De-escalation Reminders:</h4>
+                        <ul id="tipsList">
+                            <li>Use a calm, respectful tone</li>
+                            <li>Listen actively and show empathy</li>
+                            <li>Avoid arguing or being defensive</li>
+                            <li>Offer choices and autonomy</li>
+                        </ul>
+                    </div>
+
+                    <div class="response-input">
+                        <label for="userResponse">Your Response:</label>
+                        <textarea id="userResponse" placeholder="Type your response..." rows="2"></textarea>
+                        <button class="btn btn-primary" onclick="submitResponse()">Submit Response</button>
+                    </div>
+
+                    <div id="feedbackBox" class="feedback-box hidden">
+                        <h3 id="feedbackTitle">Feedback</h3>
+                        <div id="feedbackContent"></div>
+                        <button class="btn btn-primary" onclick="nextScenario()">Next Scenario</button>
+                        <button class="btn btn-secondary" onclick="showScreen('homeScreen')">Return Home</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Screen -->
+            <section id="aboutScreen" class="screen">
+                <div class="content-box">
+                    <h2>About Verbal De-escalation</h2>
+                    <button class="btn-back" onclick="showScreen('homeScreen')">← Back</button>
+
+                    <h3>What is Verbal De-escalation?</h3>
+                    <p>Verbal de-escalation is the use of words, tone, and communication techniques to reduce a person's anger or aggression without physical intervention.</p>
+
+                    <h3>Key Principles</h3>
+                    <div class="principles-grid">
+                        <div class="principle-card">
+                            <h4>🎯 Respect</h4>
+                            <p>Show genuine care for feelings</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>👂 Listening</h4>
+                            <p>Understand the root cause</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>💬 Calm Voice</h4>
+                            <p>Steady tone always</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>🚫 Non-threatening</h4>
+                            <p>Open body language</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>🤝 Empathy</h4>
+                            <p>Validate feelings</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>✨ Choices</h4>
+                            <p>Offer autonomy</p>
+                        </div>
+                    </div>
+
+                    <h3>Common Mistakes to Avoid</h3>
+                    <ul>
+                        <li>❌ Raising your voice</li>
+                        <li>❌ Being defensive</li>
+                        <li>❌ Making threats</li>
+                        <li>❌ Invading personal space</li>
+                        <li>❌ Arguing or proving them wrong</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Learning Screen -->
+            <section id="learnScreen" class="screen">
+                <div class="content-box">
+                    <h2>Learning Resources</h2>
+                    <button class="btn-back" onclick="showScreen('homeScreen')">← Back</button>
+
+                    <h3>Key De-escalation Techniques</h3>
+                    
+                    <div class="technique-card">
+                        <h4>1. Validation</h4>
+                        <p><strong>Example:</strong> "I can see this is frustrating for you. I want to help."</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>2. Empathetic Listening</h4>
+                        <p><strong>Example:</strong> "Tell me what happened. I'm listening."</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>3. Offering Choices</h4>
+                        <p><strong>Example:</strong> "Would you like to step outside or talk here?"</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>4. Identifying the Need</h4>
+                        <p><strong>Example:</strong> "It seems like you feel disrespected. Let me listen."</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>5. Setting Limits with Respect</h4>
+                        <p><strong>Example:</strong> "I respect your feelings, but I need respectful communication."</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>6. Using Calming Language</h4>
+                        <p><strong>Example:</strong> "Let's take a breath and figure this out together."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="resultsScreen" class="screen">
+                <div class="results-container">
+                    <h2>Training Complete!</h2>
+                    <div id="resultsContent"></div>
+                    <button class="btn btn-primary" onclick="showScreen('homeScreen')">Return Home</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // School Scenarios
+        const scenarios = [
+            {
+                id: 1,
+                title: "Refusing Instructions",
+                situation: "Jordan refuses to sit down and says 'I'm not doing this. You can't make me.'",
+                initialEscalation: 30,
+                progression: [
+                    { escalation: 30, text: "I'm not doing this. You can't make me!" },
+                    { escalation: 45, text: "This is stupid anyway. Why listen to you?" },
+                    { escalation: 60, text: "You always pick on me! Everyone hates this class!" }
+                ],
+                calmOutcome: "Thank you for talking with me. Let's figure this out together.",
+                aggressiveOutcome: "Jordan knocks over the desk and storms out.",
+                bestPractices: ["Validate feelings", "Use calm tone", "Offer choices", "Listen first", "Avoid power struggles"]
+            },
+            {
+                id: 2,
+                title: "Upset After Correction",
+                situation: "You correct Marcus's answer. He says 'Whatever, I'm stupid anyway.'",
+                initialEscalation: 25,
+                progression: [
+                    { escalation: 25, text: "Whatever, I'm stupid anyway." },
+                    { escalation: 40, text: "Stop complaining. You're being dramatic." },
+                    { escalation: 55, text: "You think I'm dumb too, don't you?" }
+                ],
+                calmOutcome: "One mistake doesn't define your abilities. I know you can do this.",
+                aggressiveOutcome: "Marcus crumples his paper and throws it across the room.",
+                bestPractices: ["Build confidence", "Normalize mistakes", "Show belief", "Be supportive", "Separate action from person"]
+            },
+            {
+                id: 3,
+                title: "Transition Conflict",
+                situation: "During group work setup, Alexis says loudly 'I'm not working with them! That's unfair!'",
+                initialEscalation: 35,
+                progression: [
+                    { escalation: 35, text: "I'm not working with them! That's the worst group!" },
+                    { escalation: 50, text: "This is unfair! Why do you always do this?" },
+                    { escalation: 65, text: "You don't care about what I think!" }
+                ],
+                calmOutcome: "I understand your concerns. Let's talk about what would help.",
+                aggressiveOutcome: "Alexis stands up angrily and storms out of the classroom.",
+                bestPractices: ["Listen to concerns", "Validate perspective", "Show respect", "Offer solutions", "Use mediative language"]
+            },
+            {
+                id: 4,
+                title: "Chronically Late Student",
+                situation: "Kayla walks in 10 minutes late again. She says 'You don't even care. No one cares.'",
+                initialEscalation: 40,
+                progression: [
+                    { escalation: 40, text: "You don't even care. No one cares about me." },
+                    { escalation: 55, text: "I'm dealing with so much and you treat me like nothing!" },
+                    { escalation: 70, text: "I knew it. Teachers always act like they care but they don't!" }
+                ],
+                calmOutcome: "I do care about you. Let's talk about what's happening.",
+                aggressiveOutcome: "Kayla becomes confrontational and nearly pushes past you.",
+                bestPractices: ["Show genuine concern", "Look beyond behavior", "Ask about root causes", "Offer support", "Create safety"]
+            },
+            {
+                id: 5,
+                title: "Peer Conflict Escalating",
+                situation: "Devon and Chris are arguing about roles. Devon says 'You always get the easy part! This is unfair!'",
+                initialEscalation: 45,
+                progression: [
+                    { escalation: 45, text: "You always get the easy part! That's unfair!" },
+                    { escalation: 60, text: "You're lying! The teacher always takes your side!" },
+                    { escalation: 75, text: "I'm not working with you! Figure it out yourself!" }
+                ],
+                calmOutcome: "I see you both care about this. Let's find a fair solution together.",
+                aggressiveOutcome: "Devon stands up and physically confronts Chris.",
+                bestPractices: ["Separate if escalating", "Validate both", "Use mediation", "Focus on solutions", "Teach negotiation"]
+            },
+            {
+                id: 6,
+                title: "Frustrated with Difficulty",
+                situation: "Taylor looks frustrated and says 'I can't do this. This is impossible!'",
+                initialEscalation: 35,
+                progression: [
+                    { escalation: 35, text: "I can't do this. This is impossible!" },
+                    { escalation: 50, text: "Why are you making us do this? Nobody can solve these!" },
+                    { escalation: 65, text: "You don't care if we learn or fail!" }
+                ],
+                calmOutcome: "That's good - struggling means you're learning. Let's work through this.",
+                aggressiveOutcome: "Taylor tears up the paper and walks out of class.",
+                bestPractices: ["Normalize struggle", "Build confidence", "Offer scaffolding", "Show belief", "Teach growth mindset"]
+            }
+        ];
+
+        // App State
+        let appState = {
+            currentScenario: null,
+            currentScenarioIndex: 0,
+            scenarioList: [],
+            escalationLevel: 0,
+            currentProgressionStep: 0,
+            scenariosCompleted: []
+        };
+
+        // Show/Hide screens
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            const selectedScreen = document.getElementById(screenId);
+            if (selectedScreen) {
+                selectedScreen.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Start training
+        function startTraining() {
+            appState.scenarioList = scenarios.slice();
+            appState.currentScenarioIndex = 0;
+            appState.scenariosCompleted = [];
+            loadScenario();
+        }
+
+        // Load scenario
+        function loadScenario() {
+            if (appState.currentScenarioIndex >= appState.scenarioList.length) {
+                showResults();
+                return;
+            }
+
+            appState.currentScenario = appState.scenarioList[appState.currentScenarioIndex];
+            appState.escalationLevel = appState.currentScenario.initialEscalation;
+            appState.currentProgressionStep = 0;
+
+            showScreen('scenarioScreen');
+            displayScenario();
+        }
+
+        // Display scenario
+        function displayScenario() {
+            const scenario = appState.currentScenario;
+            
+            document.getElementById('scenarioTitle').textContent = scenario.title;
+            document.getElementById('scenarioNumber').textContent = appState.currentScenarioIndex + 1;
+            document.getElementById('scenarioTotal').textContent = appState.scenarioList.length;
+            
+            document.getElementById('dialogueMessages').innerHTML = '';
+            addDialogueMessage('situation', scenario.situation);
+            updateEscalationBar();
+            
+            document.getElementById('userResponse').value = '';
+            document.getElementById('userResponse').parentElement.style.display = 'block';
+            document.querySelector('.response-input .btn-primary').style.display = 'block';
+            document.getElementById('feedbackBox').classList.add('hidden');
+        }
+
+        // Add dialogue message
+        function addDialogueMessage(type, text) {
+            const messagesDiv = document.getElementById('dialogueMessages');
+            const messageEl = document.createElement('div');
+            messageEl.className = 'message';
+            
+            if (type === 'situation') {
+                messageEl.classList.add('system');
+                messageEl.textContent = '📋 ' + text;
+            } else if (type === 'student') {
+                messageEl.classList.add('student');
+                messageEl.textContent = '👤 Student: ' + text;
+            } else if (type === 'staff') {
+                messageEl.classList.add('staff');
+                messageEl.textContent = '👨‍🏫 You: ' + text;
+            } else if (type === 'outcome') {
+                messageEl.classList.add('outcome');
+                messageEl.textContent = '✓ ' + text;
+            } else if (type === 'outcome negative') {
+                messageEl.classList.add('outcome', 'negative');
+                messageEl.textContent = '✗ ' + text;
+            }
+            
+            messagesDiv.appendChild(messageEl);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Update escalation bar
+        function updateEscalationBar() {
+            const percentage = Math.min(100, Math.max(0, appState.escalationLevel));
+            document.getElementById('escalationBar').style.width = percentage + '%';
+        }
+
+        // Submit response
+        function submitResponse() {
+            const userResponse = document.getElementById('userResponse').value.trim();
+            
+            if (!userResponse) {
+                alert('Please enter a response');
+                return;
+            }
+
+            document.getElementById('userResponse').parentElement.style.display = 'none';
+            document.querySelector('.response-input .btn-primary').style.display = 'none';
+            
+            addDialogueMessage('staff', userResponse);
+            
+            const evaluation = evaluateResponse(userResponse);
+            appState.escalationLevel += evaluation.escalationIncrease;
+            appState.escalationLevel = Math.max(0, Math.min(100, appState.escalationLevel));
+            updateEscalationBar();
+            
+            setTimeout(() => {
+                showNextProgression(evaluation);
+            }, 1500);
+        }
+
+        // Show next progression
+        function showNextProgression(evaluation) {
+            const scenario = appState.currentScenario;
+            
+            if (appState.escalationLevel <= 20) {
+                showFeedback(evaluation, true);
+            } else if (appState.escalationLevel >= 85) {
+                showFeedback(evaluation, false);
+            } else if (appState.currentProgressionStep < scenario.progression.length - 1) {
+                appState.currentProgressionStep++;
+                const nextMessage = scenario.progression[appState.currentProgressionStep];
+                
+                setTimeout(() => {
+                    addDialogueMessage('student', nextMessage.text);
+                    appState.escalationLevel = nextMessage.escalation;
+                    updateEscalationBar();
+                    
+                    document.getElementById('userResponse').value = '';
+                    document.getElementById('userResponse').parentElement.style.display = 'block';
+                    document.querySelector('.response-input .btn-primary').style.display = 'block';
+                }, 500);
+            } else {
+                showFeedback(evaluation, evaluation.isEffective);
+            }
+        }
+
+        // Show feedback
+        function showFeedback(evaluation, isCalmed) {
+            const scenario = appState.currentScenario;
+            const feedbackBox = document.getElementById('feedbackBox');
+            const feedbackContent = document.getElementById('feedbackContent');
+            const feedbackTitle = document.getElementById('feedbackTitle');
+            
+            feedbackContent.innerHTML = '';
+            
+            if (isCalmed) {
+                feedbackTitle.textContent = '✓ Successful De-escalation';
+                feedbackBox.classList.add('positive');
+                feedbackBox.classList.remove('negative');
+                addDialogueMessage('outcome', scenario.calmOutcome);
+            } else {
+                feedbackTitle.textContent = '✗ Escalation Occurred';
+                feedbackBox.classList.add('negative');
+                feedbackBox.classList.remove('positive');
+                addDialogueMessage('outcome negative', scenario.aggressiveOutcome);
+            }
+            
+            if (evaluation.techniques.length > 0) {
+                feedbackContent.innerHTML += '<div class="feedback-section"><h4>What You Did Well:</h4>';
+                evaluation.techniques.forEach(t => {
+                    feedbackContent.innerHTML += `<div class="feedback-item positive">✓ ${t}</div>`;
+                });
+                feedbackContent.innerHTML += '</div>';
+            }
+            
+            if (evaluation.feedback.length > 0) {
+                feedbackContent.innerHTML += '<div class="feedback-section"><h4>Areas to Improve:</h4>';
+                evaluation.feedback.forEach(f => {
+                    feedbackContent.innerHTML += `<div class="feedback-item negative">✗ ${f}</div>`;
+                });
+                feedbackContent.innerHTML += '</div>';
+            }
+            
+            feedbackContent.innerHTML += '<div class="feedback-section"><h4>Best Practices:</h4>';
+            scenario.bestPractices.forEach(p => {
+                feedbackContent.innerHTML += `<div class="feedback-item tip">• ${p}</div>`;
+            });
+            feedbackContent.innerHTML += '</div>';
+            
+            appState.scenariosCompleted.push({
+                scenario: scenario.title,
+                successful: isCalmed,
+                score: evaluation.score
+            });
+            
+            feedbackBox.classList.remove('hidden');
+        }
+
+        // Next scenario
+        function nextScenario() {
+            appState.currentScenarioIndex++;
+            loadScenario();
+        }
+
+        // Show results
+        function showResults() {
+            showScreen('resultsScreen');
+            
+            const completed = appState.scenariosCompleted;
+            const successful = completed.filter(s => s.successful).length;
+            const avgScore = Math.round(completed.reduce((sum, s) => sum + s.score, 0) / completed.length);
+            
+            let html = `<div class="results-stats">`;
+            html += `<div class="stat-card"><div class="stat-number">${successful}/${completed.length}</div><div class="stat-label">Successful</div></div>`;
+            html += `<div class="stat-card"><div class="stat-number">${avgScore}%</div><div class="stat-label">Average Score</div></div>`;
+            html += `</div><h3>Scenario Breakdown:</h3><div style="margin: 15px 0;">`;
+            
+            completed.forEach((s, i) => {
+                const status = s.successful ? '✓' : '✗';
+                const statusClass = s.successful ? 'positive' : 'negative';
+                html += `<div class="feedback-item ${statusClass}">${status} ${s.scenario} - ${s.score}%</div>`;
+            });
+            
+            html += `</div><h3 style="margin-top: 20px;">Key Takeaways:</h3>`;
+            html += `<div class="feedback-item tip">• Focus on validation and empathy first</div>`;
+            html += `<div class="feedback-item tip">• Ask questions to understand the real issue</div>`;
+            html += `<div class="feedback-item tip">• Maintain a calm tone regardless of behavior</div>`;
+            html += `<div class="feedback-item tip">• Avoid power struggles - offer choices instead</div>`;
+            html += `<div class="feedback-item tip">• Practice these techniques regularly</div>`;
+            
+            document.getElementById('resultsContent').innerHTML = html;
+        }
+
+        // Evaluate response
+        function evaluateResponse(userResponse) {
+            const response = userResponse.toLowerCase();
+            let score = 50;
+            let feedback = [];
+            let techniques = [];
+            let escalationIncrease = 0;
+            
+            // Good phrases
+            const goodPhrases = ['understand', 'hear you', 'help', 'listen', 'talk', 'support', 'respect', 'feel', 'calm', 'together'];
+            const foundGood = goodPhrases.filter(p => response.includes(p)).length;
+            
+            if (foundGood > 0) {
+                score += foundGood * 10;
+                techniques.push('Used calming and validating language');
+            }
+            
+            // Bad phrases
+            const badPhrases = ['stupid', 'wrong', 'no choice', 'detention', 'parent', 'stop', 'shut up', 'deal with it'];
+            const foundBad = badPhrases.filter(p => response.includes(p)).length;
+            
+            if (foundBad > 0) {
+                score -= foundBad * 15;
+                feedback.push('Avoid defensive or dismissive language');
+            }
+            
+            // Questions
+            if (response.includes('?')) {
+                score += 10;
+                techniques.push('Asked questions to understand');
+            }
+            
+            // Length
+            if (response.length < 10) {
+                score -= 10;
+                feedback.push('Response too brief - show more concern');
+            }
+            
+            // Determine escalation
+            if (score >= 50) {
+                escalationIncrease = -15;
+            } else if (score >= 30) {
+                escalationIncrease = 5;
+            } else {
+                escalationIncrease = 20;
+            }
+            
+            score = Math.max(0, Math.min(100, score));
+            
+            return {
+                score: score,
+                feedback: feedback,
+                techniques: techniques,
+                escalationIncrease: escalationIncrease,
+                isEffective: score >= 40
+            };
+        }
+    </script>
+</body>
+</html>
