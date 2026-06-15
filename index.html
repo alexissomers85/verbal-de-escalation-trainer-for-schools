@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbal De-escalation Trainer for Schools</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎯 Verbal De-escalation Trainer</h1>
+            <p class="subtitle">School-Based Scenarios & Learning Tools</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Screen -->
+            <section id="homeScreen" class="screen active">
+                <div class="welcome-box">
+                    <h2>Welcome to the De-escalation Trainer</h2>
+                    <p>Learn and practice evidence-based verbal de-escalation techniques using realistic school scenarios.</p>
+                    
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>📋 Scenarios</h3>
+                            <p>Interactive classroom situations with escalating behavior</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>📊 Feedback</h3>
+                            <p>Real-time evaluation of your de-escalation responses</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>📚 Learning</h3>
+                            <p>CPI-based techniques and best practices</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="startTraining()">Start Training</button>
+                    <button class="btn btn-secondary" onclick="showScreen('aboutScreen')">About De-escalation</button>
+                    <button class="btn btn-secondary" onclick="showScreen('learnScreen')">Learning Resources</button>
+                </div>
+            </section>
+
+            <!-- Scenario Screen -->
+            <section id="scenarioScreen" class="screen">
+                <div class="scenario-container">
+                    <div class="scenario-header">
+                        <h2 id="scenarioTitle">Scenario</h2>
+                        <div class="scenario-progress">
+                            <span id="scenarioNumber">1</span> / <span id="scenarioTotal">6</span>
+                        </div>
+                    </div>
+
+                    <!-- Escalation Meter -->
+                    <div class="escalation-meter">
+                        <label>Student Escalation Level</label>
+                        <div class="meter-bar">
+                            <div id="escalationBar" class="meter-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="meter-labels">
+                            <span>Calm</span>
+                            <span>Escalating</span>
+                            <span>Aggressive</span>
+                        </div>
+                    </div>
+
+                    <!-- Dialogue Box -->
+                    <div class="dialogue-box">
+                        <div class="dialogue-messages" id="dialogueMessages">
+                            <!-- Messages will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- CPI Tips -->
+                    <div class="tips-box">
+                        <h4>💡 CPI De-escalation Reminders:</h4>
+                        <ul id="tipsList">
+                            <li>Use a calm, respectful tone</li>
+                            <li>Maintain non-threatening body language</li>
+                            <li>Listen actively and show empathy</li>
+                            <li>Avoid arguing or being defensive</li>
+                            <li>Give the person space and choices</li>
+                        </ul>
+                    </div>
+
+                    <!-- User Response Input -->
+                    <div class="response-input">
+                        <label for="userResponse">Your Response:</label>
+                        <textarea id="userResponse" placeholder="Type how you would respond to this situation..." rows="3"></textarea>
+                        <button class="btn btn-primary" onclick="submitResponse()">Submit Response</button>
+                    </div>
+
+                    <!-- Feedback Box (Hidden initially) -->
+                    <div id="feedbackBox" class="feedback-box hidden">
+                        <h3 id="feedbackTitle">Feedback</h3>
+                        <div id="feedbackContent"></div>
+                        <button class="btn btn-primary" onclick="nextScenario()">Next Scenario</button>
+                        <button class="btn btn-secondary" onclick="showScreen('homeScreen')">Return Home</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About De-escalation Screen -->
+            <section id="aboutScreen" class="screen">
+                <div class="content-box">
+                    <h2>About Verbal De-escalation</h2>
+                    <button class="btn-back" onclick="showScreen('homeScreen')">← Back</button>
+
+                    <h3>What is Verbal De-escalation?</h3>
+                    <p>Verbal de-escalation is the use of words, tone, and communication techniques to reduce a person's anger or aggression without physical intervention.</p>
+
+                    <h3>Key CPI Principles</h3>
+                    <div class="principles-grid">
+                        <div class="principle-card">
+                            <h4>🎯 Respect</h4>
+                            <p>Show genuine care and concern for the person's feelings and perspective.</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>👂 Listening</h4>
+                            <p>Listen actively to understand the root cause of the escalation.</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>💬 Calm Voice</h4>
+                            <p>Maintain a calm, steady tone regardless of the student's behavior.</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>🚫 Non-threatening</h4>
+                            <p>Use open body language and maintain appropriate distance.</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>🤝 Empathy</h4>
+                            <p>Validate feelings and show understanding of their situation.</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>✨ Choices</h4>
+                            <p>Offer choices to help the person feel more in control.</p>
+                        </div>
+                    </div>
+
+                    <h3>Common Mistakes to Avoid</h3>
+                    <ul>
+                        <li>❌ Raising your voice or matching their intensity</li>
+                        <li>❌ Being defensive or dismissive of their concerns</li>
+                        <li>❌ Making threats or ultimatums</li>
+                        <li>❌ Invading personal space</li>
+                        <li>❌ Arguing or proving them wrong</li>
+                        <li>❌ Ignoring their emotional needs</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Learning Resources Screen -->
+            <section id="learnScreen" class="screen">
+                <div class="content-box">
+                    <h2>Learning Resources</h2>
+                    <button class="btn-back" onclick="showScreen('homeScreen')">← Back</button>
+
+                    <h3>De-escalation Techniques</h3>
+                    
+                    <div class="technique-card">
+                        <h4>1. Validation</h4>
+                        <p><strong>What:</strong> Acknowledge the person's feelings and concerns.</p>
+                        <p><strong>Example:</strong> "I can see this is really frustrating for you. I want to help."</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>2. Empathetic Listening</h4>
+                        <p><strong>What:</strong> Listen without interrupting and show you understand.</p>
+                        <p><strong>Example:</strong> "Tell me what happened. I'm listening."</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>3. Offering Choices</h4>
+                        <p><strong>What:</strong> Give options to help them feel in control.</p>
+                        <p><strong>Example:</strong> "Would you like to step outside for a moment, or talk here?"</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>4. Identifying the Need</h4>
+                        <p><strong>What:</strong> Determine what the person really needs (respect, safety, control).</p>
+                        <p><strong>Example:</strong> "It seems like you feel disrespected. Let me listen."</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>5. Setting Limits with Respect</h4>
+                        <p><strong>What:</strong> Establish boundaries while maintaining respect.</p>
+                        <p><strong>Example:</strong> "I respect your feelings, but I need you to speak respectfully to me too."</p>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4>6. Using Calming Language</h4>
+                        <p><strong>What:</strong> Choose words that soothe rather than provoke.</p>
+                        <p><strong>Example:</strong> "Let's take a breath and figure this out together."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="resultsScreen" class="screen">
+                <div class="results-container">
+                    <h2>Training Complete!</h2>
+                    <div id="resultsContent"></div>
+                    <button class="btn btn-primary" onclick="showScreen('homeScreen')">Return Home</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="scenarios.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
